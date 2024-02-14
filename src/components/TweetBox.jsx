@@ -8,13 +8,11 @@ const TweetBox = () => {
       <form>
         <div className="tweetBox_input">
           <Avatar
-            src="https://lh3.googleusercontent.com/a/ACg8ocKVZT2-Jj9lqrwlOdS5NBN2pAD0Azwk-u0nBJ35e4Rh8BghFw4RLTCWRFdqqraNuC0VpHzFvnchIH4L10Fk2088RA=s288-c-no"
-            alt="Chukwu Godwin"
-            id="ember33"/>
+            src="https://media.licdn.com/dms/image/D4D03AQGNtMtWUWulRw/profile-displayphoto-shrink_200_200/0/1705239022325?e=1710979200&v=beta&t=U-plKlS5pW01f6XNjwJZV73pEBgh586eJY1PND0J1Ak"/>
           <input placeholder="What's happening?" type ='text' />
-          
         </div>
-        <Button>Tweet</Button>
+        <input className='tweetBox_imageInput' placeholder='Enter Image URL' type='text'/>
+        <Button className='tweetBox_tweetButton'>Tweet</Button>
       </form>
     </div>
   );
