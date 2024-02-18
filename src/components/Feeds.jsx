@@ -2,39 +2,51 @@ import React, { useEffect, useState } from 'react'
 import "./Feeds.css"
 import TweetBox from './TweetBox'
 import Post from './Post'
+import { db } from "../firebase"
+import { getDocs, collection } from "firebase/firestore"
 
-const Feeds = () => {
-  const [posts, setPosts] = useState([]);
-  useEffect(()=>{
-  
-  })
+function Feeds() {
+  const [tweetlist, setTweetList] = useState([]);
+
+  useEffect(() => {
+    const getTweetsList = async () => {
+      try {
+        const tweetsListRef = collection(db, "posts");
+        const querySnapshot = await getDocs(tweetsListRef);
+        const tweets = [];
+        querySnapshot.forEach((doc) => {
+          tweets.push(doc.data());
+        });
+        setTweetList(tweets);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getTweetsList();
+  }, []);
+
   return (
     <div className="feed">
-      {/* Header */}
-
-        <div className="feeds_header">
+      <div className="feeds_header">
         <h2>Home</h2>
+      </div>
 
-        </div>
+      <TweetBox />
 
-      {/* Tweet Box */}
-      <TweetBox/>
-
-
-      {posts.map(post => (
-
-      <Post displayName={post.displayName}
-      username={post.username}
-      verified={post.verified}
-      text={post.text}
-      avatar={post.avatar}
-      image={post.image}
-      />
+      {tweetlist.map((post, index) => (
+        <Post
+          key={index}
+          displayName={post.displayName}
+          username={post.username}
+          verified={post.verified}
+          text={post.text}
+          avatar={post.avatar}
+          image={post.image}
+        />
       ))}
-
-
     </div>
-  )
+  );
 }
 
-export default Feeds
+export default Feeds;

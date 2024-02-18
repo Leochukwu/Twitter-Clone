@@ -29,7 +29,7 @@ const Post = ({displayName, username, verified, text, image, avatar }) => {
                     <p>{text}</p>
                 </div>
             </div>
-            <img src={image} />
+            <img src={image} alt="Post" />
             <div className="post_footer">
                 <ChatBubbleOutlineIcon fontSize="small" />
                 <RepeatIcon fontSize="small" />
