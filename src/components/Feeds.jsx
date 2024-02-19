@@ -4,6 +4,8 @@ import TweetBox from './TweetBox'
 import Post from './Post'
 import { db } from "../firebase"
 import { getDocs, collection } from "firebase/firestore"
+import FlipMove from 'react-flip-move'
+
 
 function Feeds() {
   const [tweetlist, setTweetList] = useState([]);
@@ -34,9 +36,11 @@ function Feeds() {
 
       <TweetBox />
 
+      <FlipMove>
+
       {tweetlist.map((post, index) => (
         <Post
-          key={index}
+          key={post.text}
           displayName={post.displayName}
           username={post.username}
           verified={post.verified}
@@ -45,6 +49,7 @@ function Feeds() {
           image={post.image}
         />
       ))}
+      </FlipMove>
     </div>
   );
 }
